@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.container{
+				width: 100px;
+				height: 300px;
+				background-color: red;
+				margin: 0 auto;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div onmouseover="fn1()" onmouseout="fn2()">
+			<ul class="haha">
+				<li class="cont">第一</li>
+				<li>第二</li>
+				<li id="only">第三</li>
+				<li>第四</li>
+				<li>第五</li>
+				<li><p id="only1">haha</p><a id="byby">dada</a><p>nini</p></li>
+			</ul>
+		</div>
+		<span class="cont"></span>
+		<!--<script>
+			//获取标签元素节点的三种方法
+			var a=document.getElementsByClassName("cont");	//获取的是相同class属性的一个数组
+			var b=document.getElementById("only");			//获取的是单个标签	原因标签上的id属性不能相同
+			var c=document.getElementsByTagName("li")[0];	//获取的同一标签数组
+			alert(a[0].innerHTML)		//获取标签上的内容
+			alert(b.innerHTML)
+			alert(c.innerHTML)
+		</script>-->
+		
+		
+		<script>
+			var c=document.getElementsByTagName("li")[5];
+//			//根据父标签获取子节点
+//			alert(c.childNodes.length);
+//			//根据子标签获取父标签节点
+//			alert(c.parentNode.innerHTML);
+//			alert(c.parentNode.parentNode.innerHTML);
+
+
+			//通过节点属性获取某标签（要算文本空格，也要计算标签）
+//			//根据父节点获取第一个子节点
+//			alert(c.firstChild.innerHTML);
+//			//根据父节点获取最后一个子节点
+//			alert(c.lastChild.innerHTML);
+
+
+//			//根据某一个标签找上一个兄弟节点
+//			var d=document.getElementById("byby");
+//			alert(d.previousSibling.innerHTML)
+//			//根据某一个标签找下一个兄弟节点
+//			var e=document.getElementById("only1");
+//			alert(e.nextSibling.innerHTML)
+
+
+			
+//			//通过标签属性获取某标签（不算文本空格，只计算标签）
+//			var c=document.getElementsByTagName("li")[5];
+//			alert(c.firstElementChild.innerHTML);
+//			alert(c.firstElementChild.nextElementSibling.innerHTML)
+//			alert(c.lastElementChild.innerHTML);
+
+			var k=document.getElementsByTagName("div")[0]
+			function fn1(){
+				k.setAttribute("class","container")		
+			}
+			function fn2(){
+				k.removeAttribute("class")
+			}
+		
+		</script>
+	</body>
+</html>

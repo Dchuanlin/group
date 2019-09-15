@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--<button onclick="f()">点击按钮</button>
+		<button onclick="f1()">显示学员信息</button>
+		<script>
+			var a=[];
+			var n;
+			function f(){
+			
+				n=prompt("请输入学员姓名")
+				a.push(n);
+			}
+			function f1() {
+				document.write("共有"+(a.length)+"学员，信息如下")
+				for(var i=0;i<a.length;i++){
+					document.write(a[i]+"<br/>")
+				}
+			}
+		</script>
+		-->
+<!--		
+		<div style="width:80px; height:30px ;background-color:red" ></div>
+		<select value="" onchange="fn()">
+			<option>哈哈</option>
+			<option>啦啦</option>
+			<option>啪啪</option>
+			<option>哒哒</option>
+			
+		</select>
+		<script>
+			function fn(){
+				var i=document.getElementsByTagName("select")[0];
+				document.getElementsByTagName("div")[0].innerHTML=i.value;
+			}
+			
+		</script>-->
+		<!--<input type="text"/ >
+		<select value="" onchange="fn1()">
+			<option>+</option>
+			<option>-</option>
+			<option>*</option>
+			<option>/</option>
+			
+		</select>
+		<input type="text" />
+		<span>=</span>
+		<span>结果</span><br/>
+		<button onclick="fn4()">点击</button>
+		<script>
+			function fn4(){
+				var i=document.getElementsByTagName("input")[0];
+				var x=parseFloat(i.value);		//i.value返回的是字符串
+				
+				var a=document.getElementsByTagName("input")[1];
+				var y=parseFloat(a.value);		//a.value返回的是字符串
+				
+				var b=document.getElementsByTagName("select")[0];
+				var m=b.value;		//b.value返回的是字符串
+				var n=0;
+				switch(m){
+					case "+":
+						n=x+y
+						break;
+					case "-":
+						n=x-y
+						break;
+					case "*":
+						n=x*y
+						break;
+					case "/":
+						n=x/y
+						break;
+					default	:
+						n="输入有误"
+						break;
+				}
+				
+				document.getElementsByTagName("span")[1].innerHTML=n;
+				
+			}
+			
+		</script>-->
+		<style>
+			.a{
+				width: 420px;
+				height: 400px;
+				margin: 0 auto;
+			}
+			.b{
+				width: 210px;
+				height: 400px;
+				float: left;
+			}
+			.c{
+				width: 210px;
+				height: 400px;
+				float: left;
+			}
+		</style>
+		<div class="a">
+			<div class="b">
+				<span>独孤求败:</span>
+				<span>180(金币)</span><br/>
+				<span>你出拳：</span>
+				<button onclick="fn1()">石头</button>
+				<button onclick="fn1()">剪刀</button>
+				<button onclick="fn1()">布</button>
+				<span><img src="img/用户.png" /></span>
+			</div>
+			<div class="c">
+				<span>疯狂电脑:</span>
+				<span>220(金币)</span><br/>
+				<span>电脑出拳：</span>
+				<span>准备</span>
+				<span><img src="img/电脑.png" /></span>
+			</div>	
+		</div>
+		<script>
+			function fn1(){
+				var i=document.getElementsByTagName("span")[3];
+			}
+		</script>
+		
+	</body>
+</html>

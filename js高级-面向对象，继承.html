@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		////////一：原型链的继承
+		
+			//////第一种：子级的原型赋值给父级的实例
+			function Person(){	//父级
+				this.name="周杰伦";
+			}
+			function Sperson(){	//子级
+				
+			}
+			Sperson.prototype=new Person();//子级的原型赋值给父级的实例	子级通过这个关系找到父级的信息
+			var a=new Sperson();
+			console.log(a.name);
+			
+			//////第二种：将子级的原型赋值给父级的原型
+			function Book(){
+				this.name="蔡";
+			}
+			Book.prototype.x="200";
+			function DzBook(){
+				
+			}
+			DzBook.prototype=Book.prototype;//将子级的原型赋值给父级的原型    注意：这里的子级只能找到父级的原型，找不到父级对象
+			var b=new DzBook();
+			console.log(b.name);
+			console.log(b.x);
+			
+			
+			///////第三种：空对象:封装一个函数(child:子类;parent:父类)
+			function extend(child,parent){
+				var f=new function(){}
+				f.prototype=parent.prototype;
+				child.prototype=new f()
+				child.prototype.constructor=child
+			}
+		///////////////////////////////////////////////////////////////////////////////	
+			
+			///////第四种：call、apply方法
+			function A(){
+				this.init=function(){
+					console.log("A");
+				}
+				this.inits=function(){
+					console.log(A);
+				}
+			}
+			function B(){
+//				A.call(this);
+				A.apply(this);
+			}
+			var a=new B();
+			a.init();
+			a.inits();
+			
+			
+			
+			///////第五种：call、apply、A.prototype=B.prototype结合使用
+			function A(){
+				this.init=function(){
+					console.log("A");
+				}
+			}
+			A.prototype.age=12;
+			A.prototype=B.prototype;
+			function B(){
+//				A.call(this);
+				A.apply(this);
+			}
+			var a=new B();
+			a.init();
+			console.log(a.age);
+			
+			
+			
+			
+			//实例
+			function Person(){
+				this._name="张三";
+				this.ygrade="98分";
+				this.sgrade="62分";
+				this.ffa=function(){
+					document.write(this._name+this.ygrade+this.sgrade)
+				}
+			}
+			Student.prototype=new Person();
+			function Student(){
+				this.age="18";
+				this.faf=function(){
+					document.write(this.age);
+				}
+			}
+			var a=new Student();
+			a.faf();
+			a.ffa();
+		</script>
+		
+		
+		
+	</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<button onclick="fn1()">-</button>
+		<button onclick="fn2()">+</button>
+		<div style="font-size:18px;">
+			《花千骨》是由慈文传媒集团制作并发行，林玉芬、高林豹、梁胜权联合执导，霍建华、赵丽颖领衔主演，
+			 蒋欣、杨烁特别出演，张丹峰、马可、李纯、鲍天琦、安悦溪、徐海乔等主演的古装玄幻仙侠剧。
+			  该剧改编自fresh果果同名小说，讲述少女花千骨与长留上仙白子画之间关于责任、成长、取舍的纯爱虐恋[1] 。
+			  该剧于2014年5月6日开机，9月15日杀青，8月12日发布中文及英文版的预告片[2] 。 
+			  该剧于2015年6月9日起每周二、周三晚10点在湖南卫视的钻石独播剧场播出。
+			  [3] 2015年7月5日起， 该剧播放时间已经改为每周日、周一晚10点。当天零点在爱奇艺同步更新。
+			  [4] 2015年11月25日广东卫视活力剧场二轮强势播出
+		</div>
+	</body>
+	<!--<script>              
+		//绑定点击事件
+		var a=document.getElementsByTagName("button")[0];
+		//方法一：标签里绑定事件
+		function fn2(){
+			alert(2)
+		}
+		//方法二：js里添加绑定事件
+//		a.onclick=function fn1(){
+//			alert(1)
+//		}
+		//方法三：js里添加绑定事件
+		a.addEventListener("click",function fn1(){
+			alert(1)
+		})
+	</script>-->
+	
+	<script>
+		//方法一：截取(slice)
+		var b=document.getElementsByTagName("div")[0];
+		function fn1(){
+			var c=b.style.fontSize;
+			var h=parseInt(c.slice(0,2));
+			var g=(h-2)+"px";
+			b.style.fontSize=g;
+		}
+		function fn2(){
+			var c=b.style.fontSize;		//注意：这里的c表示的是一个字符串（18px），而b.style.fontSize代表的是这个b标签的样式
+			var h=parseInt(c.slice(0,2));
+			var g=(h+2)+"px";
+			b.style.fontSize=g;
+		}
+	</script>
+		
+	<!--<script>
+		//方法二：声明变量d=18
+		var b=document.getElementsByTagName("div")[0];
+		var d=18;
+		function fn1(){
+			d=d-2;
+			b.style.fontSize=d+"px";
+			
+		}
+		function fn2(){
+			d=d+2;
+			b.style.fontSize=d+"px";
+			
+		}
+	</script>-->
+</html>

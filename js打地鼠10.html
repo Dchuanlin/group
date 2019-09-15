@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<select onchange="cMouseD()">
+			<option value="1">第一关</option>
+			<option value="2">第二关</option>
+			<option value="3">第三关</option>
+			<option value="4">第四关</option>
+		</select>
+		<style>
+			._div{
+				width: 500px;
+				height: 500px;
+				margin: 0 auto;
+				text-align: center;
+			}
+		</style>
+		<div class="_div">
+			<h2>剩余时间:<span>0</span></h2>
+			<div><button onclick="cM()">开始</button></div>
+			<div>分数:<span>0</span></div>
+			<div>
+				<table border="1" align="center">
+					
+				</table>
+			</div>
+		</div>
+		<script>
+		
+			//1.生成老鼠洞  
+			  var c;
+			  var e;
+		    function cMouseD(){
+			    c=document.getElementsByTagName("select")[0].value;      //<option value="1">第一关</option>
+                var b=document.getElementsByTagName("table")[0];
+                var a=" ";
+                e=3+(parseInt(c)-1);
+			    for(var i=0;i<e;i++){    //获取表格
+			        a+="<tr>"
+    			        for(var j=0;j<e;j++){
+    			            a+="<td><img src='img/hole.gif'/></td>"
+    			        }
+			        a+="</tr>"
+			    }
+			    b.innerHTML=a;       //将表格放在table标签里
+			}
+    		    cMouseD();        //调用函数
+			    
+		
+			
+
+    	
+    		
+//			//2.随机生成老鼠   
+             var _random=0;
+             var k;
+             
+			function cM(){
+			    var _td=document.getElementsByTagName("td");
+			    k=setInterval(function(){
+			       
+    			    _td[_random].innerHTML="<img src='img/hole.gif'/>";          //生成老鼠之前的照片（老鼠洞）
+    			     _random=parseInt(Math.random()*_td.length);
+    			    _td[_random].innerHTML="<img src='img/bad1.png' onclick='fn1("+_random+")'/>";   //生成老鼠之后的照片（老鼠）
+			    },1000);     //用定时器可以直接调用当前函数，不用再另外调用当前函数
+		
+			}
+<!-------在生成老鼠的照片上绑定一个点击事件，同时将_random里获取的值赋给fn1()函数，通过_inset接收，这样就可以将一个函数里的参数调用到另一函数里面调用该值------->
+			//3.打中老鼠 
+			var fs=0;        //分数
+			function fn1(_inset){
+			    var _td=document.getElementsByTagName("td");
+			    _td[_inset].innerHTML="<img src='img/bad2.png'/>"        //打中老鼠的图片
+			   
+			    fs++;                     //计分
+			    var s=document.getElementsByTagName("span")[1];
+			    s.innerHTML=fs;          
+			}
+		</script>
+	</body>
+</html>

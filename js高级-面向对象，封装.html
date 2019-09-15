@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function User(name){
+				this._name=name;
+				this.setAge=function(age){
+					if(age>=0&&age<120){
+						this._age=age;
+					}
+				}
+				this.getAge=function(){
+					return this._age==undefined ? 0 : this._age;
+				}
+			}
+			var user=new User("周杰伦");
+			user._name;
+			user.setAge(10);
+			console.log(user.getAge());
+		</script>
+	</body>
+</html>

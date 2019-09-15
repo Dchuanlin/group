@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button>开始</button>
+		<button>停止</button>
+		<span></span>
+	</body>
+	<script>
+		var a=document.getElementsByTagName("button");
+		var b=document.getElementsByTagName("button")[0];
+		var c=document.getElementsByTagName("button")[1];
+		var h;
+		var d=7;
+		b.onclick=function fn1(){
+			var f=document.getElementsByTagName("span")[0];
+			h=setInterval(function(){
+				f.innerHTML=(d--);
+				if(d<0){
+					alert("haha");
+					clearInterval(h);
+				}
+			},1000)
+			
+		}
+		c.onclick=function fn2(){
+			clearInterval(h)
+		}
+	</script>
+</html>

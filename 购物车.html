@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+		
+		
+		<style>
+			
+			
+		</style>
+		
+		<table border="1" align="center">
+			<tr>
+				<th>编号</th>
+				<th>商品名称</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>总价</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>《大头儿子与小头爸爸》</td>
+				<td>23.00</td>
+				<td><button class="sub">-</button><input type="text" value="1" /><button class="add">+</button></td>
+				<td class="price">23.00</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>《大头儿子与小头爸爸》</td>
+				<td>23.00</td>
+				<td><button class="sub">-</button><input type="text" value="1" /><button class="add">+</button></td>
+				<td class="price">23.00</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>《大头儿子与小头爸爸》</td>
+				<td>23.00</td>
+				<td><button class="sub">-</button><input type="text" value="1" /><button class="add">+</button></td>
+				<td class="price">23.00</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+			<tr>
+				<td colspan="6" style="text-align: right;">
+					总价:<span id="allPrice">0.00</span>￥
+				</td>
+			</tr>
+		</table>
+		
+		
+		<script>
+			//购物车面向对象    
+				//购物车对象上的属性  
+						//商品的数量
+						//商品的单价
+						//减按钮  
+						//加按钮  
+						
+				//购物车对象上的行为
+						//数量加减
+						//计算单件商品的总价
+						//计算所有商品的总价  
+						
+			function ShoppingCar(){
+				this.num = 0;//商品的数量
+				this.price = 0;//商品的单价
+				this.sub_btn = document.getElementsByClassName("sub");//减按钮  
+				this.add_btn = document.getElementsByClassName("add");//加按钮
+				this.all_price = document.getElementsByClassName("price");//每件商品的总价
+				this.allPrice = document.getElementById("allPrice");//总价
+			}
+			//数量加减   
+			ShoppingCar.prototype.setNum = function(){
+				
+				var that = this;
+				
+				for(let i = 0;i<this.sub_btn.length;i++){//数量减
+					this.sub_btn[i].onclick = function(){
+						that.num = parseInt(this.nextElementSibling.value);
+						if(that.num>0){
+							that.num--;
+						}
+						this.nextElementSibling.value = that.num;
+						that.comPrice(this);
+					}
+				}
+				
+				for(let i = 0;i<this.add_btn.length;i++){//数量加
+					this.add_btn[i].onclick = function(){
+						that.num = parseInt(this.previousElementSibling.value);
+						that.num++;
+						this.previousElementSibling.value = that.num;
+						that.comPrice(this);
+					}
+				}
+				
+			}
+			
+			//计算单件商品的总价
+			ShoppingCar.prototype.comPrice = function(e){
+				//商品的单价
+				this.price = parseInt(e.parentElement.previousElementSibling.innerText);
+				
+				e.parentElement.nextElementSibling.innerText = this.num*this.price;
+				
+				this.comAllPrice();
+			}
+			
+			//计算所有商品的总价
+			ShoppingCar.prototype.comAllPrice = function(){
+				
+				var allprice = 0;
+				for(var i =0;i<this.all_price.length;i++){
+					allprice += parseInt(this.all_price[i].innerText);
+				}
+				
+				this.allPrice.innerText = allprice;
+				
+			}
+			
+			
+			var sc = new ShoppingCar();
+			sc.setNum();
+			
+		</script>
+	</body>
+</html>

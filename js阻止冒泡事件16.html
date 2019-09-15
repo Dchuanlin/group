@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="shows()">显示块</button>
+		<div style="width: 200px;height: 200px;background-color: red;display: none;">
+			
+		</div>
+		
+		
+		<script>
+			//点击按钮    显示块  
+			function shows(e){
+				var oEvent = e || event;
+				oEvent.stopPropagation();//阻止事件流
+				var div = document.getElementsByTagName("div")[0];
+				div.style.display = "block";
+			}
+			
+			//点击页面空白部分   隐藏块
+			document.onclick = function(e){			//注意：document指页面中的整个文档
+				var oEvent = e || event;
+				oEvent.stopPropagation();
+				var div = document.getElementsByTagName("div")[0];
+				div.style.display = "none";
+			}
+			
+		</script>
+	</body>
+</html>

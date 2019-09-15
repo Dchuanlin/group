@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	
+	</head>
+	<body style="position: relative;">
+		<div>1111</div>
+		<div style="width: 200px;height: 200px;background-color: red;position: absolute;top: 0px;left: 0px;"></div>
+		<!--<div style="width: 800px;height: 200px;background-color: red;">
+			<div style="width: 400px;height: 200px;background-color: yellow;">
+				<div style="width: 200px;height: 200px;background-color: blue;">
+					
+				</div>
+			
+			</div>
+			
+		</div>-->
+		<script>
+			//div块的大小随窗口大小的改变而改变
+			var c=innerWidth;
+			var d=innerHeight;
+			window.onload=function(){
+				var a=document.getElementsByTagName("div")[0];
+				a.innerHTML="abc"
+			}
+			window.onresize=function(){
+				alert("宽度："+innerWidth+"，高度："+innerHeight)
+			}
+			window.onresize=function(){
+				var e=innerWidth;
+				var f=innerHeight;
+				var g=document.getElementsByTagName("div")[1];
+				var q=g.style.width.replace("px","")*(e/c);
+				g.style.width=q+"px";
+				c=e;
+				
+				var h=g.style.height.replace("px","")*(f/d);
+				g.style.height=h+"px";
+				d=h;
+			}
+
+
+			//滚动条距离滚动框顶部的距离
+//			window.onscroll=function(){
+//				var a=document.body.scrollTop||document.documentElement.scrollTop
+//				console.log(a);
+//			}
+
+			//按下键盘按键获取键码
+//			document.onkeydown=function(e){
+//				var b=e||event;			//解决兼容问题的方法
+//				alert(b.keyCode)
+//			}
+
+
+			//div块随鼠标的移动而移动
+//			document.onmousemove=function(e){
+//				var y=e||event;				//解决兼容问题的方法
+//				var t=document.getElementsByTagName("div")[1];
+//				t.style.top=y.clientY+"px";
+//				t.style.left=y.clientX+"px"
+//			}
+//			
+			
+			
+//			
+//			function fn1(e){
+//				var a=e||event;
+//				a.stopPropagation();	//阻止事件流：冒泡型事件或者捕获型事件
+//				alert("red")
+//			}
+//			function fn2(e){
+//				var a=e||event;
+//				a.stopPropagation()
+//				alert("yellow")
+//			}
+//			function fn3(){
+//				alert("blue")
+//			}
+//		//捕获型事件---true（从外到里）
+////		document.getElementsByTagName("div")[0].addEventListener("click",fn1,true);
+////		document.getElementsByTagName("div")[1].addEventListener("click",fn2,true);
+////		document.getElementsByTagName("div")[2].addEventListener("click",fn3,true);
+//		
+//		//冒泡型事件---flase(从里到外)
+//		document.getElementsByTagName("div")[0].addEventListener("click",fn1,false);
+//		document.getElementsByTagName("div")[1].addEventListener("click",fn2,false);
+//		document.getElementsByTagName("div")[2].addEventListener("click",fn3,false);
+		</script>
+	</body>
+</html>

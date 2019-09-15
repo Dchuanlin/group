@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			padding: 0px;
+			margin: 0px;
+			
+		}
+		.head{
+			width: 300px;
+			height: 300px;
+			margin: 0 auto;
+		}
+		.cont{
+			margin-left: 100px;
+			
+		}
+		
+		.zhong{
+			margin-left: 100px;
+		}
+		table{
+			margin-left: 30px;
+		}
+		td{
+			background-color: gold;
+			margin: 5px;
+		}
+	</style>
+	<body>
+		<div class="head">
+			<span>当前时间：</span>
+			<span></span>
+			<span>0</span><br/>
+			<button onclick="starts()" class="zhong">开始</button>
+			<button onclick="ends()">停止</button>
+			<div class="cont">看看是谁？</div>
+			<table onchange="creatTab()"></table>
+		</div>
+	</body>
+	<script>
+		//首先将当前时间1s间隔显示在div里，然后当点击开始按钮开始循环，点击结束按钮结束循环
+		//1、将当前时间1s间隔显示在div里
+		setInterval(function(){
+				var datess=new Date();
+				var m=datess.getFullYear();
+				var d=datess.getMonth()+1;
+				var n=datess.getDate();
+				var a=datess.getDay();
+				var b=datess.getHours();	//小时
+				var c=datess.getMinutes();
+				var e=datess.getSeconds();
+				document.getElementsByTagName("span")[1].innerHTML=m+"年"+d+"月"+n+"日"+" "+b+":"+c+":"+e;
+		},100);		
+		//2、将所有名单放入表格中
+		function creatTab(){
+			var a=["张三","李四","王五","赵六"	,"田七","周八"	,"张三","李四2","王五2","赵六"	,"田七","周八"	,"张三","李四3","王五","赵六","田七","周八","张三","李四4","王五","赵六"	,"田七","周八"	,"张三","李四5","王五","赵六"	,"田七","周八"	];
+			var b=document.getElementsByTagName("table")[0];
+			var c=" ";
+			var num=0;		//定义num是为了遍历a数组
+			for(var i=0;i<5;i++){
+				c+="<tr>";		//获取5行
+				for(var j=0;j<6;j++){
+					c+="<td>"+a[num]+"</td>";	//获取5列并且将名字放在单元格里
+								//如果这里的a[num]改成a[j]的话，他只会找到a数组的前五个值，不会找到a数组后面的值
+					num++;		//通过自加一得到0-29
+				}
+				c+="</tr>";		
+			}
+			b.innerHTML=c;		//将制作的表格内容赋值给指定的table（表格）
+		}
+		creatTab()		//调用函数才能显示表格
+		
+		//2、当点击开始按钮时 随机获取学生的姓名
+			var f=document.getElementsByTagName("div");		//要显示内容的div块
+			var e=document.getElementsByTagName("td");		//要显示的单元格
+			var g=0;		//老的随机数
+			var i=null;			//只有将定时器名字定义成全局变量，ends函数关闭定时器的时候才能调用（重点）
+								//每创建一个定时器就将里面的值传给变量i
+		function starts(){		//当我点击开始按钮时才能执行定时器
+			i=setInterval(function(){		//定义定时器的名字
+				e[g].style.backgroundColor="gold";		//作用：在生成新的随机数之前要将老的随机数的背景颜色改成原先的颜色（重点）
+				g=parseInt(Math.random()*30);
+				e[g].style.backgroundColor="blue";		//新的随机数的背景颜色改为蓝色
+				f[1].innerHTML=e[g].innerHTML;			//将随机选中的单元格文本赋值给div标签
+			},1000)
+		}
+		//3、点击结束按钮结束循环  第二个div里的内容变为某学生的姓名
+		function ends(){
+			clearInterval(i)
+		}
+
+	</script>
+</html>

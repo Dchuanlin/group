@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		
+		
+		<script>
+			//1、创建面向对象  方法一
+			var obj={
+				name:"周吉伦",
+				age:28,
+				height:"170cm",
+				dt:function(){
+					document.write(obj.name+"在唱歌<br/>");
+				}
+			};
+			obj.dt();
+			document.write(obj.height+"<br/>");
+			
+			//2、创建面向对象 方法二
+			var obj1=new Object();
+			obj1.name="周杰伦";
+			obj1.age="28";
+			obj1.dt=function(){
+				document.write(obj1.name+"在唱歌<br/><br/>");
+			}
+			obj1.dt();
+			
+			//3、练习
+			var person={
+				name:"狼小明",
+				age:38,
+				zhiye:"中国内地男演员、歌手",
+				address:"中国北京海淀区"
+			}
+			document.write("姓名："+person.name+"<br/>年龄："+person.age+"<br/>职业："+person.zhiye+"<br/>住址："+person.address);
+			
+			//4、练习
+			var times={
+				y:new Date().getFullYear(),
+				m:new Date().getMonth()+1,
+				r:new Date().getDate(),
+				t:function(){
+					document.write("<br/>"+this.y+"-"+this.m+"-"+this.r+"<br/>");
+				}
+			}
+			times.t();
+			
+			//4、工厂模式
+			function Createuser(name,age){		//注意：工厂函数的函数名第一个字母要大写
+				var user=new Object();
+				user.name=name;
+				user.age=age;
+				user.dt=function(){
+					document.write(user.name+"是"+user.age+"<br/>");
+				}
+				return user;
+			}
+			var c=Createuser("周杰伦","28");
+			c.dt();
+			
+			
+			//5、构造函数
+			function User(name,age){		//注意：构造函数的函数名第一个字母要大写
+				this.name=name;				//直接将方法和属性赋给了this
+				this.age=age;
+				this.init=function(){
+					document.write(this.name+"是"+this.age+"<br/>");
+				}
+			}
+			var user=new User("蔡依林","20");
+			user.init();
+			
+			
+			//6、构造函数 + 原型对象
+			function Aser(name,age){		//注意：构造函数的函数名第一个字母要大写
+				this.name=name;				//直接将方法和属性赋给了this
+				this.age=age;
+				this.init=function(){
+					document.write(this.name+"是"+this.age+"<br/>");
+				}
+			}
+			//原型对象
+			Aser.prototype.eat=function(){
+				document.write(this.name+"正在吃<br/>");
+			}
+			var aser=new Aser("周润发","28");
+			aser.eat();
+			var bser=new Aser("周星星","28");
+			bser.eat();
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

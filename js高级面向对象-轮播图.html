@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<style>
+			ul{
+				width: 400px;
+				height: 300px;
+				padding: 0px;
+				margin: 0px;
+				
+			}
+			li{
+				
+				list-style: none;
+				display: none;
+			}
+			.active{
+				display: block;
+			}
+			li img{
+				width: 100%;
+			}
+			.sy{
+				width: 400px;
+				height: 300px;
+				position: relative;
+				margin: 0 auto;
+			}
+			.prev{
+				display: inline-block;
+				width: 25px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				color:cadetblue;
+				background-color: rgba(255,255,255,0.2);
+				position: absolute;
+				left: 0px;
+				top: 30%;
+			}
+			.next{
+				display: inline-block;
+				width: 25px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				color:cadetblue;
+				background-color: rgba(255,255,255,0.2);
+				position: absolute;
+				right: 0px;
+				top: 30%;
+			}
+		</style>
+		<div class="sy">
+			<ul>
+				<li class="active"><img src="img/1.jpg" alt="" /></li>
+				<li><img src="img/2.jpg" alt="" /></li>
+				<li><img src="img/3.jpg" alt="" /></li>
+				<li><img src="img/4.jpg" alt="" /></li>
+			</ul>
+			<span class="prev"><</span>
+			<span class="next">></span>
+		</div>
+		<script>
+			function lunbo(){
+				this._index=0;
+				this.lis=document.getElementsByTagName("li");
+				this.sy=document.getElementsByClassName("sy")[0];
+				this.prev=document.getElementsByClassName("prev")[0];
+				this.next=document.getElementsByClassName("next")[0];
+				this.timer=null;
+			}
+		
+			lunbo.prototype.showlb=function(){
+				var that=this;
+				this.timer=setInterval(function(){
+					that._index++;
+					if(that._index>=that.lis.length){
+						that._index=0;
+					}
+					that.auto();
+				},1000)
+			}
+			
+			lunbo.prototype.auto=function(){
+				for(var i=0;i<this.lis.length;i++){
+					this.lis[i].className="";
+				}
+				this.lis[this._index].className="active";
+			}
+			
+			//切换页面
+			lunbo.prototype.qiehuan=function(){
+				var that=this;
+				this.prev.onclick=function(){
+					that._index--;
+					if(that._index<0){
+						that._index=that.lis.length-1;
+					}
+					that.auto();
+				}
+				this.next.onclick=function(){
+					that._index++;
+					if(that._index>that.lis.length-1){
+						that._index=0;
+					}
+					that.auto();
+				}
+				
+			}
+			//悬停事件
+			lunbo.prototype.xuanting=function(){
+				var that=this;
+				this.sy.onmouseover=function(){
+					clearInterval(that.timer);
+				}
+				this.sy.onmouseout=function(){
+					that.showlb();
+				}
+			}
+			
+			//初始化
+			lunbo.prototype.init=function(){
+				lb.showlb();
+				lb.xuanting();
+				lb.qiehuan();
+			}
+			var lb=new lunbo();
+			lb.init();
+		</script>
+	</body>
+</html>

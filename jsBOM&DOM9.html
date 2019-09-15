@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--<script>
+			
+			//警告框
+			window.alert("234");
+			alert("234");
+			
+			//确认框
+			var i=window.confirm("您确定要进去吗？");
+			document.write(i);
+			var n=confirm("您确定要进去吗？");
+			document.write(n);
+			
+			//提示框
+			var m=window.prompt("您准备好了吗？");
+			document.write(m);
+			var l=confirm("您准备好了吗？");
+			document.write(l);
+			
+		</script>-->
+		
+		
+		<!--<script>
+			//js时间对象
+		
+			//1、间隔1s输出秒钟，重复输出
+			setInterval(function (){
+				var date=new Date();
+				document.write(date.getSeconds())
+			},1000);
+			
+			//2、间隔5s输出一次秒钟，之后不再输出
+			setTimeout(function (){
+				alert("hello")
+				},5000);
+		</script>-->
+		
+		
+		
+		<select onchange="fn1()">
+			<option value="red">红色</option>
+			<option value="yellow">黄色</option>
+			<option value="green">绿色</option>
+			<option value="blue">蓝色</option>
+			
+		</select>
+		<script>
+			function fn1(){
+				var i=document.getElementsByTagName("select")[0];
+				document.getElementsByTagName("body")[0].style.backgroundColor=i.value;
+			}
+		</script>
+	</body>
+</html>

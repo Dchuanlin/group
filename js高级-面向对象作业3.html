@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				width: 100px;
+				height: 120px;
+			}
+			td{
+				border:solid 1px black;
+				text-align: center;
+				padding: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<table align="center">
+			<tr>
+				<td>商品图片</td>
+				<td>商品信息</td>
+				<td>单价</td>
+				<td>数量</td>
+				<td>总价</td>
+				<td>操作</td>
+			</tr>
+			<tr>
+				<td><img src="img/dog.jpg" /></td>
+				<td>我和狗狗活下来了</td>
+				<td>￥21.90</td>
+				<td><button class="btns1">-</button><input type="text" value="0"/><button class="btns2">+</button></td>
+				<td class="_div">￥0</td>
+				<td>移入收藏</td>
+			</tr>
+			<tr>
+				<td><img src="img/mai.jpg" /></td>
+				<td>雾霾来了怎么办</td>
+				<td>￥24.00</td>
+				<td><button class="btns1">-</button><input type="text" value="0"/><button class="btns2">+</button></td>
+				<td class="_div">￥0</td>
+				<td>移入收藏</td>
+			</tr>
+				<tr>
+					<td colspan="5" >商品总计：￥<span id="zj">0</span></td>
+					<td><button>结算</button></td>
+				</tr>
+		</table>
+			
+		<script>
+			function Obj(){
+				this.spans=document.getElementById("zj");
+				this.btns1=document.getElementsByClassName("btns1");//减
+				this.btns2=document.getElementsByClassName("btns2");//加
+				this.dtd=document.getElementsByClassName("_div");
+				this.num=0;//数量
+				this.price=0;//单价
+			}
+			Obj.prototype.jiajian=function(){
+				var that=this;
+				for(let i=0;i<that.btns1.length;i++){
+					that.btns1[i].onclick=function(){
+						if(that.num>0){
+							this.nextElementSibling.value--;
+						}
+						that.num=this.nextElementSibling.value;
+						that.hes(this);
+//						that.num=parseInt(this.nextElementSibling.value);
+//						that.num--;
+//						this.nextElementSibling.value=that.num;
+//						that.hes(this);
+					}
+				}
+				for(let i=0;i<that.btns2.length;i++){
+					that.btns2[i].onclick=function(){
+						this.previousElementSibling.value++;
+						that.num=this.previousElementSibling.value;
+						that.hes(this);
+//						that.num=parseInt(this.previousElementSibling.value);
+//						that.num++;
+//						this.previousElementSibling.value=that.num;
+//						that.hes(this);
+					}
+				}
+			}
+			//求单个总价
+			Obj.prototype.hes=function(e){
+				this.price=parseFloat((e.parentElement.previousElementSibling.innerText).substring(1));
+				e.parentElement.nextElementSibling.innerText="￥"+(this.price*this.num).toFixed(2);
+				this.allprice();
+			}
+			//求总价
+			Obj.prototype.allprice=function(){
+				var allprice=0;
+				for(let i=0;i<this.dtd.length;i++){
+					allprice+=parseFloat(this.dtd[i].innerText.substring(1));
+					
+				}
+				allprice=allprice.toFixed(2);
+				this.spans.innerText=allprice;
+			}
+			
+			var obje=new Obj();
+			obje.jiajian();
+		</script>
+	</body>
+</html>

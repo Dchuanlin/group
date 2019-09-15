@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		ul{
+			margin: 0px;
+			padding: 0px;
+			overflow: hidden;
+		}
+		li{
+			width: 60px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			margin-left: 5px;
+			list-style: none;
+			border: solid 1px gainsboro;
+			float: left;
+		}
+		.active{
+			background-color: red;
+		}
+	</style>
+	<body>
+		<ul id="uls">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div>
+			<p>abcdef</p>
+			<p>123456</p>
+			<p>ABCDEF</p>
+			<p>......</p>
+		</div>
+		<script>
+			//1.自动切换  + 自动轮播
+			
+			//2.悬停功能
+			
+			//3.改变背景和显示指定块  
+			
+			//注意对象包括：属性和行为
+			
+			function objsty(){
+				//对象的基本属性
+				this.lis=document.getElementsByTagName("li");
+				this.ps=document.getElementsByTagName("p");
+				this.uls=document.getElementById("uls");
+				this.num=0;
+				this.ds=null;
+			}
+			//自动切换
+			objsty.prototype.styler=function(){
+				for(var i=0;i<this.lis.length;i++){
+					this.lis[i].className="";
+					this.ps[i].style.display="none";
+				}
+				this.lis[this.num].className="active";
+				this.ps[this.num].style.display="block";
+			}
+			//自动轮播
+			objsty.prototype.auto=function(){
+				var that = this;
+				that.ds=setInterval(function(){
+					that.num++;
+					if(that.num>=that.lis.length){
+						that.num=0;
+					}
+					  that.styler();                             
+				},1000)
+			}
+			
+			
+			//悬停功能  
+			objsty.prototype.stop=function(){
+				var that = this;
+				for(let i=0;i<that.lis.length;i++){
+					that.lis[i].onmouseover=function(){
+						that.num = i;
+						that.styler();
+					}
+				}
+				//给ul绑定鼠标移入和移出事件
+				that.uls.onmouseover = function(){
+					clearInterval(that.ds);
+				}
+				that.uls.onmouseout = function(){
+					that.auto();
+				}
+			}
+			
+		
+			var obs=new objsty();
+			obs.stop();
+			obs.auto();
+		</script>
+	</body>
+</html>

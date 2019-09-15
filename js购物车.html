@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				width: 100px;
+				height: 120px;
+			}
+			td{
+				border:solid 1px black;
+				text-align: center;
+				padding: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<input type="text"/><button onclick="fn1()">点我</button>-->
+		<!--<button onclick="fn1()">-</button><input type="text" value="1" placeholder="1"/><button onclick="fn2()">+</button>-->
+		
+		<table align="center">
+			<tr>
+				<td>商品图片</td>
+				<td>商品信息</td>
+				<td>单价</td>
+				<td>数量</td>
+				<td>总价</td>
+				<td>操作</td>
+			</tr>
+			<tr>
+				<td><img src="img/dog.jpg" /></td>
+				<td>我和狗狗活下来了</td>
+				<td>￥21.90</td>
+				<td><button onclick="fn1(this)">-</button><input type="text" value="0"/><button onclick="fn2(this)">+</button></td>
+				<td class="_div">￥0</td>
+				<td>移入收藏</td>
+			</tr>
+			<tr>
+				<td><img src="img/mai.jpg" /></td>
+				<td>雾霾来了怎么办</td>
+				<td>￥24.00</td>
+				<td><button onclick="fn1(this)">-</button><input type="text" value="0"/><button onclick="fn2(this)">+</button></td>
+				<td class="_div">￥0</td>
+				<td>移入收藏</td>
+			</tr>
+				<tr>
+					<td colspan="5" >商品总计：<span id="zj">¥115.80</span></td>
+					<td><button>结算</button></td>
+				</tr>
+		</table>
+	</body>
+	<script>
+		
+////	****商品1的总价显示步骤  只计算减******
+//		function fn1(a){		//a==this指代button按钮
+//			a.nextElementSibling.value--;			//减号按钮里的值自减1
+//			var b=a.parentNode.nextElementSibling	//获取商品1里的总价单元格
+//			var f=a.parentNode.previousElementSibling.innerHTML		//获取单价单元格里的内容
+//			var c=parseFloat((f.substring(1))*(a.nextElementSibling.value));	//商品1里的商品总价=单价*数量
+//			b.innerHTML="￥"+c.toFixed(2);			//把总价显示在商品1总价单元格里	(toFixed():保留小数点后几位)
+//		}
+////	****商品2的总价显示步骤  只计算加*******
+//		function fn2(a){			//a==this指代button按钮
+//			a.previousElementSibling.value++;		//加号按钮里的值自加1
+//			var b=a.parentNode.nextElementSibling;	//获取商品2里的总价单元格
+//			var f=a.parentNode.previousElementSibling.innerHTML;	//获取单价单元格里的内容
+//			var c=parseFloat((f.substring(1))*(a.previousElementSibling.value));	//商品2里的商品总价=单价*数量
+//			b.innerHTML="￥"+c.toFixed(2);		//把总价显示在商品2总价单元格里	(toFixed():保留小数点后几位)
+//		}
+
+
+
+		
+		function fn1(a){		//a==this指代button按钮
+			a.nextElementSibling.value--;				//减号按钮里的值自减1
+			zongjia(a,a.nextElementSibling.value)		//a==this    k==a.nextElementSibling.value    (传参)
+		}
+		function fn2(a){		//a==this指代button按钮
+			a.previousElementSibling.value++;			//加号按钮里的值自加1
+			zongjia(a,a.previousElementSibling.value)	//a==this    k==a.previousElementSibling.value	(传参)
+		}
+		
+		function zongjia(a,k){							//传参(a   k)
+			var t=document.getElementsByClassName("_div");		//通过("_div")类标签获取class标签数组
+			var d=document.getElementById("zj");			//通过id("zj")属性获取商品1、2总价的单元格标签
+			var f=a.parentNode.previousElementSibling.innerHTML;	//获取单价单元格里的内容
+			var e=k*(f.substring(1));	//商品1、2里的商品总价=单价*数量
+			var b=a.parentNode.nextElementSibling;		//获取商品1、2里的总价单元格
+			b.innerHTML="￥"+e.toFixed(2);		//把总价显示在商品1、2总价单元格里	(toFixed():保留小数点后几位)
+			var h=0;		//商品总价初始值0
+			for(var i=0;i<t.length;i++){		//遍历t数组
+				h+=parseFloat(t[i].innerHTML.substring(1));	//把商品1、2的总价往商品总价里加
+			}
+			d.innerHTML="￥"+h.toFixed(2);		//把商品总价显示在总价单元格里	(toFixed():保留小数点后几位)
+		}
+		
+	
+	</script>
+	
+	
+	
+	<!--<script>
+		function fn1(){
+			var a=document.getElementsByTagName("input")[0].value;
+			alert(a);
+		}
+	</script>-->
+	
+	<!--<script>
+		//方法一
+//		var b=document.getElementsByTagName("input")[0];
+//		function fn1(){
+//			b.value--;			字符串加加、减减不用转整形
+//		}
+//		function fn2(){
+//			b.value++;
+//		}
+		//方法二
+//		var b=document.getElementsByTagName("input")[0];
+//		function fn1(){
+//			var c=parseInt(b.value)-1;
+//			b.value=c;
+//		}
+//		function fn2(){
+//			var c=parseInt(b.value)+1;
+//			b.value=c;
+//		}
+//	</script>-->
+</html>

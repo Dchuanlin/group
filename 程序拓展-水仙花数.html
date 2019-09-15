@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var a=parseInt(prompt("请输入一个三位数"));
+			var b;
+			var c;
+			var d;
+			var e;
+			var y;
+			b=parseInt(a/100);//取百位
+			c=parseInt(a%100/10);//取十位
+			d=parseInt(a%100%10);//取个位
+			e=parseInt(b*b*b+c*c*c+d*d*d);
+			if(e==a){
+				document.write(a+"是水仙花数");
+			}else if(e!=a){
+				document.write(a+"不是水仙花数");
+			}
+			
+				
+	
+		</script>
+	</body>
+</html>

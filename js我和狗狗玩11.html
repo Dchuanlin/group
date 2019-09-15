@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<span>请选择：</span>
+			<input type="radio" name="a1" onclick="fn1()"/>
+			<span>我和狗狗有个约会</span>
+			<input type="radio" name="a1" onclick="fn2()"/>
+			<span>我和狗狗一起活下去</span>
+			
+		</div>
+			<img src="img/aftermoon.gif" alt=" " onclick="fn3()"/>
+			<span></span>
+	</body>
+	<script>
+		var a=document.getElementsByTagName("img")[0];
+		var b=document.getElementsByTagName("span")[3]
+		function fn1(){
+			a.setAttribute("src","img/dog.jpg");
+			b.innerHTML="我和狗狗有个约会"
+			a.setAttribute("alt","我和狗狗有个约会")
+		}
+		function fn2(){
+			a.setAttribute("src","img/mai.jpg");
+			b.innerHTML="我和狗狗一起活下去";
+			a.setAttribute("alt","我和狗狗一起活下去")
+		}
+		function fn3(){
+			alert(a.getAttribute("alt"))
+			
+		}
+	</script>
+</html>

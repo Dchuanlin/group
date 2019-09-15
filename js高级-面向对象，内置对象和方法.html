@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//eval方法
+			var str=" 1+2 ";
+//			console.log(eval(str));
+//			console.log(str);
+			
+			//内置对象和方法/去除首位空格
+			String.prototype.shuchu=function(){
+				
+				for(var i=0;i<this.length;i++){
+					
+						this.replace(/(^\s*)|(\s*$)/g,"")
+						
+					
+						console.log(this)
+				}
+				
+			}
+			
+			str.shuchu();
+			
+		</script>
+	</body>
+</html>

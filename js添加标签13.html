@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			._div{
+				width: 150px;
+				height: 40px;
+				background-color: gray;
+				border-radius: 10px;
+				text-align: center;
+				line-height: 40px;
+				font-weight: 700;
+				color: white;
+				cursor: pointer;
+				margin: 0 auto;
+			}
+			._div1{
+				width: 300px;
+				height: 300px;
+				border: solid 1px blueviolet;
+				margin: 0 auto;
+				margin-top: 10px;
+				display: none;
+			}
+			._div2{
+				width: 270px;
+				height: 200px;
+				border: solid 1px blueviolet;
+				margin: 0 auto;
+			}
+			._div3{
+				width: 70px;
+				height: 40px;
+				background-color: gray;
+				border-radius: 10px;
+				text-align: center;
+				line-height: 40px;
+				font-weight: 700;
+				color: white;
+				cursor: pointer;
+				margin:0 auto;
+			}
+			._div4{
+				margin-left: 12px;
+			}
+			input{
+				width: 277px;
+				height: 20px;
+				margin-left: 10px;
+			}
+			.w{
+				font-size: 15px;
+				display: inline-block;
+				margin-left: 10px;
+			}
+			._div5{
+				width: 800px;
+				height: 80px;
+				display: none;
+				float: left;
+				margin: 0 auto;
+			}
+			._div5 div{
+				float: left;
+			}
+			._div5 div img{
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<div>
+			
+		</div>
+		<button onclick="fn1()">开始按钮</button>
+		<button onclick="fn2()">停止按钮</button>-->
+		<div onclick="fn1()" class="_div">我要发帖</div>
+		<div class="_div1">
+			<input type="text" placeholder="请输入标题（1-50个字符）"/><br/>
+			<span class="w">所属版本：</span>
+			
+				<select id="a">
+					<option>请选择板块</option>
+					<option>电子书来了</option>
+					<option>电子书籍</option>
+					<option>新客来了</option>
+				</select>
+			
+			<div class="_div4">
+				<textarea class="_div2"></textarea>
+			</div>
+			<div class="_div3" onclick="fn2()">发布</div>
+			
+		</div>
+		<div class="_div5">
+			<!--<div class="_div6">
+				<span></span>
+				<span>板块：</span>	<span></span>
+				<span>发表时间：</span>	<span></span>
+			</div>-->
+		</div>
+		
+	</body>
+	<!--<script>
+		//在页面里添加标签
+//		var n;
+//		function fn1(){
+//			n=setInterval(function(){
+//			var a=document.createElement("button");
+//			var b=document.getElementsByTagName("div")[0];
+//			b.appendChild(a);
+//			a.innerHTML="再见，您呢";},1000)
+//		}
+//		function fn2(){
+//			clearInterval(n)
+//		}
+	</script>-->
+	
+	
+	<script>
+		function fn1(){
+			var a=document.getElementsByClassName("_div1")[0];
+			a.style.display="block";
+		}
+		function fn2(){
+			var b=document.getElementById("a").value;
+			var c=document.getElementsByClassName("_div2")[0].value;
+			var d=document.getElementsByTagName("input")[0].value;
+			var f=document.getElementsByTagName("span");
+			var a=document.getElementsByClassName("_div1")[0];
+			a.style.display="none";
+			
+			
+//		<div class="_div6">
+//				<img src=""/>
+//				<h1>主题</h1>
+//				<span>板块：</span>	<span></span>
+//				<span>发表时间：</span>	<span></span>
+//		</div>
+
+			var g=document.getElementsByClassName("_div5")[0];
+			g.style.display="block";
+			var h=document.createElement("div");
+			g.appendChild(h);
+			h.style.width="800px"
+			
+			var q=document.createElement("img");
+			h.appendChild(q);
+			q.src="img/剪刀.png";
+			q.style.float="left";
+			q.style.marginRight="10px"
+			
+			var o=document.createElement("h3");
+			h.appendChild(o);
+			o.innerHTML="标题"
+			
+			var w=document.createElement("span");	//<span>板块：</span>
+			h.appendChild(w);
+			w.innerHTML="板块："
+			w.style.float="left";
+			
+			var r=document.createElement("span");	//<span></span>
+			h.appendChild(r);
+			r.innerHTML=d;
+			r.style.float="left";
+			
+			
+			var i=document.createElement("span");	//<span>发表时间：</span>
+			h.appendChild(i);
+			i.innerHTML="发表时间："
+			i.style.float="left";
+			
+			var p=document.createElement("span");	//<span></span>
+			h.appendChild(p);
+			p.innerHTML=new Date();
+			p.style.float="left";
+			
+			
+		}
+	</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			console.log(Math.ceil(-25.6));			//上舍入
+
+			console.log(Math.floor(-25.6));			//下舍入
+			console.log(Math.round(-25.6));			//正数四舍五入	负数（不要看负数）五舍六入
+
+			console.log(Math.random());							//0-1之间的小数，包0不包1
+			
+
+			for(var i=1;i<100;i++){								//0-10之间的小数
+				console.log(Math.random()*10);
+			}
+			console.log("------------------------");
+			
+			
+			for(var i=1;i<100;i++){								//0-10之间的整数
+				console.log(parseInt((Math.random()*10)));
+			}
+			console.log("------------------------");
+			
+		
+			var b=[];
+			for(var i=0;i<10;i++){								
+				b.push(parseInt(Math.random()*90)+10);			//10-100之间的整数排序
+			}
+				b.sort(function(a,b){
+				return a-b;
+				})
+			console.log(b);
+
+
+
+			
+			
+			
+		</script>
+	</body>
+</html>

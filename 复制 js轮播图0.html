@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0px;
+				margin: 0px;
+			}
+			div{
+				width: 730px;
+				height: 454px;
+				margin:0 auto;
+				position: relative;
+			}
+			li{
+				list-style: none;
+				width: 730px;
+				height: 454px;
+				display: none;		/*行内样式大于内嵌样式*/
+			}
+			dd{
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				margin-left: 10px;
+				background-color: white;	/*行内样式大于内嵌样式*/
+				float: left;	
+				cursor: pointer;
+			}
+			dd:hover{
+				background-color: red;
+			}
+			dl{
+				position: absolute;
+				bottom: 15px;
+				right: 60px;
+			}
+			span{
+				opacity: 0.7;
+				display: block;
+				width: 20px;
+				height: 35px;
+				background-color: darkgray;
+				line-height: 35px;
+				text-align: center;
+				font-size: 20px;
+				cursor: pointer;
+			}
+			.left{
+				position: absolute;
+				top: 40%;
+				left: 0px;
+			}
+			.right{
+				position: absolute;
+				top: 40%;
+				right: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li><img src="img/1.jpg"></li>	<!----刷新网页的时候显示的li标签------>
+				<li><img src="img/2.jpg"></li>
+				<li><img src="img/3.jpg"></li>
+				<li><img src="img/4.jpg"></li>
+				<li><img src="img/5.jpg"></li>
+			</ul>
+			<dl>
+				<dd style="background-color: red;"></dd>		<!----刷新网页的时候显示的dd标签的背景色为红色------>
+				<dd></dd>
+				<dd></dd>
+				<dd></dd>
+				<dd></dd>
+			</dl>
+			<span class="left" onclick="fn2()"><</span>
+			<span class="right" onclick="fn3()">></span>
+		</div>
+		<script>
+			var a=document.getElementsByTagName("li");	//获取li标签数组
+			var b=document.getElementsByTagName("dd");	//获取dd标签数组
+			var num=0;
+			function nextimg(){
+				num=num+1;
+				lunbo();
+			}
+			setInterval(nextimg,1000);		//间隔1s轮播图片：每间隔1s让num加1
+			
+			function fn2(){					//点击左箭头轮播
+				num=num-1;
+				lunbo();
+			}
+			function fn3(){					//点击右箭头轮播
+				num=num+1;
+				lunbo();
+			}
+			
+		
+		
+			function lunbo(){
+			
+				
+				if(num>a.length-1){		//当num大于a.length时，就将num付给初始值0  实现右轮播
+					num=0;				////要显示的下标越界 把下标还原成0
+				}
+				if(num<0){				//当num小于a.length时，就将num付给a.length  实现左轮播
+					num=a.length-1;
+				}
+				for(var i=0;i<a.length;i++){		//遍历li标签
+					a[i].style.display="none";		//将所有的li标签隐藏掉
+				}
+					a[num].style.display="block";	//只显示当前出现的li标签	
+				for(var j=0;j<b.length;j++){				//遍历所有的dd标签
+					b[j].style.backgroundColor="white";		//将所有的dd标签的背景颜色改为白色
+				}
+					b[num].style.backgroundColor="red";		//将当前显示的dd标签的背景颜色改为红色
+			}
+				
+			
+		</script>
+	</body>
+</html>

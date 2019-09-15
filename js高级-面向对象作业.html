@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<style>
+			#myui{
+				overflow: hidden;
+				width: 450px;
+			}
+			#myui li{
+				list-style: none;
+				float: left;
+				width:100px;
+				height:40px;
+				border: solid 1px blue;
+				text-align: center;
+				line-height: 40px;
+			}
+			
+			#myui .active{
+				background-color: red;
+			}
+			#mydiv p{
+				display: none;
+			}
+		</style>
+		
+		<ul id="myui">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div id="mydiv">
+			<p style="display: block;">课工场，每时每课给你新机会</p>
+			<p>HTML5+CSS3制作酷炫效果</p>
+			<p>JavaScript制作网页特效</p>
+			<p>jQuery制作网页特效</p>
+		</div>
+		<script>
+			//1.自动切换  
+			
+			//2.悬停功能
+			
+			//3.改变背景和显示指定块    
+			
+			//方法一:不使用面向对象思想    
+//			var lis = document.getElementsByTagName("li");//li标签
+//			var ps = document.getElementsByTagName("p");//p标签   
+//			var num = 0;//要显示的下标
+//			
+//			for(let i = 0;i<lis.length;i++){
+//				
+//				lis[i].onmouseover = function(){
+//					console.log(i);
+//					bjstyle(i);
+//				}
+//				
+//			}
+//			
+//			var trim =setInterval(function(){
+//				num++;
+//				if(num>=lis.length){
+//					num = 0;
+//				}
+//				bjstyle(num);
+//			},1000)
+//			
+//			function bjstyle(m){
+//				for(var j = 0;j<lis.length;j++){
+//					lis[j].className = "";
+//					ps[j].style.display = "none";
+//				}
+//				
+//				lis[m].className = "active";
+//				ps[m].style.display = "block";
+//			}
+			
+			
+			//方法二：使用面向对象的写法
+			//选项卡对象       
+				//属性   
+					//要显示的下标
+					//所有li标签
+					//所有p标签  
+					//定时器的编号
+					//myul
+				//行为
+					//改变li标签的背景颜色，显示和隐藏指定的p标签
+					//自动轮播  
+					//鼠标移入到ul标签上悬停   
+					
+			function Tabs(){
+				this.num = 0;//要显示的下标
+				this.lis = document.getElementsByTagName("li");//所有li标签
+				this.ps = document.getElementsByTagName("p");//所有p标签  
+				this.trim = null;//定时器的编号
+				this.myul = document.getElementById("myui");//myul
+			}
+			//改变li标前的背景和显示指定的p标签
+			Tabs.prototype.bjstyle=function(){
+				
+				//把所有的li标签上的class值清空，把所有的p标签都隐藏  
+				for(var i = 0;i<this.lis.length;i++){
+					this.lis[i].className = "";
+					this.ps[i].style.display = "none";
+				}
+				//把指定下标下的li标加上class值，把指定下标的p标签显示     
+				this.lis[this.num].className = "active";
+				this.ps[this.num].style.display = "block";
+			}
+			//自动轮播   
+			Tabs.prototype.auto = function(){//
+				var that = this;
+				this.trim = setInterval(function(){
+					that.num++;
+					if(that.num >= that.lis.length){
+						that.num = 0;
+					}
+					that.bjstyle();
+				},1000)
+			}
+			
+			//鼠标移入   悬停效果   
+			Tabs.prototype.thove = function(){
+				var that = this;
+				for(let i = 0;i<that.lis.length;i++){
+					that.lis[i].onmouseover = function(){
+						that.num = i;
+						that.bjstyle();
+					}
+				}
+				
+				//给ul绑定鼠标移入和移出事件
+				this.myul.onmouseover = function(){
+					clearInterval(that.trim);
+				}
+				this.myul.onmouseout = function(){
+					that.auto();
+				}
+			}
+			
+			var tab = new Tabs();
+			tab.auto();
+			tab.thove();
+		</script>
+	</body>
+</html>

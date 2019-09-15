@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<script>
+			//闭包：函数里面声明的变量被函数里的另一个变量调用的时候，这个变量的值会被储存起来
+			function a(){
+				var b=0;
+				return function(){
+					b=b+1;
+					console.log(b)
+				}
+			}
+			var c=a();
+			c();//1
+			c();//2
+			c();//3
+			
+			
+			function d(){
+				var b=0;
+				return function(){
+					b=b+1;
+					console.log(b)
+				}
+			}
+			d()();//1
+			d()();//1
+			d()();//1
+			
+			
+			//闭包
+			var u=document.getElementsByTagName("li");
+			for(var y=0;y<u.length;y++){
+				u[y].onclick=function(){
+					var f=y;
+					return function(){
+						console.log(f);
+					}
+				}()
+			}
+		</script>
+	</body>
+</html>

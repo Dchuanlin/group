@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function Student(name,grade){
+				this.name=name;
+				this.grade=grade;
+			}
+			Student.prototype.init=function(){
+				document.write(this.name+this.grade+"<br/>");
+			}
+			var a=new Student("张小萌","25");
+			a.init();
+			var b=new Student("王思雨","-25");
+			b.init();
+		</script>
+	</body>
+</html>
